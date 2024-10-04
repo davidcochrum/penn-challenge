@@ -48,4 +48,16 @@ class InMemoryUserRepository implements UserRepository
 
         return $this->users[$id];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function create(string $name, string $email): User
+    {
+        $id = max(array_keys($this->users)) + 1;
+        $user = new User($id, $name, $email);
+        $this->users[$id] = $user;
+
+        return $user;
+    }
 }

@@ -44,6 +44,21 @@ class PDOUserRepository implements UserRepository
         return $this->modelFromRow($row);
     }
 
+    public function create(string $name, string $email): User
+    {
+        $stmt = $this->connection->prepare('
+            INSERT INTO users (name, email)
+                 VALUES (:name, :email)
+              RETURNING id
+        ');
+        $stmt->bindParam('name', $name);
+        $stmt->bindParam('email', $email);
+        $stmt->execute();
+        $id = $stmt->fetchColumn();
+
+        return $this->findUserOfId($id);
+    }
+
     private function modelFromRow(array $row): User
     {
         return new User($row['id'], $row['name'], $row['email'], $row['points_balance']);

@@ -12,7 +12,7 @@ class User implements JsonSerializable
         private ?int $id,
         private string $name,
         private string $email,
-        private int $pointsBalance
+        private int $pointsBalance = 0
     ) {
     }
 

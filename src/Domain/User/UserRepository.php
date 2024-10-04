@@ -17,4 +17,9 @@ interface UserRepository
      * @throws UserNotFoundException
      */
     public function findUserOfId(int $id): User;
+
+    /**
+     * Creates and persists a User record.
+     */
+    public function create(string $name, string $email): User;
 }
