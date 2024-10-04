@@ -21,6 +21,10 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
+                'database' => [
+                    // 'dsn' => 'pgsql:dbname=penn;host=localhost;port=5480;user=penn;password=secret', // local
+                    'dsn' => 'pgsql:host=db;port=5432;dbname=penn;user=penn;password=secret', // docker
+                ],
             ]);
         }
     ]);

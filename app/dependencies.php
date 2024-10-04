@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         LoggerInterface::class => function (ContainerInterface $c) {
+            /** @var SettingsInterface $settings */
             $settings = $c->get(SettingsInterface::class);
 
             $loggerSettings = $settings->get('logger');
@@ -26,5 +27,12 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
+        PDO::class => function (ContainerInterface $c) {
+            /** @var SettingsInterface $settings */
+            $settings = $c->get(SettingsInterface::class);
+            $dbSettings = $settings->get('database');
+
+            return new PDO($dbSettings['dsn']);
+        }
     ]);
 };

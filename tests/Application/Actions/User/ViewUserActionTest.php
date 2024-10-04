@@ -23,7 +23,7 @@ class ViewUserActionTest extends TestCase
         /** @var Container $container */
         $container = $app->getContainer();
 
-        $user = new User(1, 'bill.gates', 'Bill', 'Gates');
+        $user = new User(1, 'Bill Gates', 'bill@microsoft.com', 3);
 
         $userRepositoryProphecy = $this->prophesize(UserRepository::class);
         $userRepositoryProphecy

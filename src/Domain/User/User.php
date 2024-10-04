@@ -8,20 +8,12 @@ use JsonSerializable;
 
 class User implements JsonSerializable
 {
-    private ?int $id;
-
-    private string $username;
-
-    private string $firstName;
-
-    private string $lastName;
-
-    public function __construct(?int $id, string $username, string $firstName, string $lastName)
-    {
-        $this->id = $id;
-        $this->username = strtolower($username);
-        $this->firstName = ucfirst($firstName);
-        $this->lastName = ucfirst($lastName);
+    public function __construct(
+        private ?int $id,
+        private string $name,
+        private string $email,
+        private int $pointsBalance
+    ) {
     }
 
     public function getId(): ?int
@@ -29,29 +21,28 @@ class User implements JsonSerializable
         return $this->id;
     }
 
-    public function getUsername(): string
+    public function getName(): string
     {
-        return $this->username;
+        return $this->name;
     }
 
-    public function getFirstName(): string
+    public function getEmail(): string
     {
-        return $this->firstName;
+        return $this->email;
     }
 
-    public function getLastName(): string
+    public function getPointsBalance(): int
     {
-        return $this->lastName;
+        return $this->pointsBalance;
     }
 
-    #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
-            'username' => $this->username,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'name' => $this->name,
+            'email' => $this->email,
+            'pointsBalance' => $this->pointsBalance,
         ];
     }
 }
