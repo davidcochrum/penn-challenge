@@ -60,4 +60,9 @@ class InMemoryUserRepository implements UserRepository
 
         return $user;
     }
+
+    public function update(User $user): void
+    {
+        $this->users[$user->getId()] = $user;
+    }
 }

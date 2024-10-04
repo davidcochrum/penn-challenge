@@ -36,6 +36,11 @@ class User implements JsonSerializable
         return $this->pointsBalance;
     }
 
+    public function addPoints(int $points): void
+    {
+        $this->pointsBalance += $points;
+    }
+
     public function jsonSerialize(): array
     {
         return [

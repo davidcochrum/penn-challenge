@@ -60,4 +60,15 @@ class InMemoryUserRepositoryTest extends TestCase
 
         $this->assertEquals(new User(2, 'New User', 'new@user.com', 0), $actual);
     }
+
+    public function testUpdate()
+    {
+        $users[1] = new User(1, 'Bill Gates', 'bill@microsoft.com', 3);
+        $userRepository = new InMemoryUserRepository($users);
+        $updated = new User(1, 'New Name', 'new@email.com', 5);
+
+        $userRepository->update($updated);
+
+        $this->assertEquals([$updated], $userRepository->findAll());
+    }
 }

@@ -59,6 +59,26 @@ class PDOUserRepository implements UserRepository
         return $this->findUserOfId($id);
     }
 
+    public function update(User $user): void
+    {
+        $stmt = $this->connection->prepare('
+            UPDATE users
+               SET name = :name
+                 , email = :email
+                 , points_balance = :points_balance
+             WHERE id = :id
+        ');
+        $id = $user->getId();
+        $stmt->bindParam('id', $id);
+        $name = $user->getName();
+        $stmt->bindParam('name', $name);
+        $email = $user->getEmail();
+        $stmt->bindParam('email', $email);
+        $pointsBalance = $user->getPointsBalance();
+        $stmt->bindParam('points_balance', $pointsBalance);
+        $stmt->execute();
+    }
+
     private function modelFromRow(array $row): User
     {
         return new User($row['id'], $row['name'], $row['email'], $row['points_balance']);

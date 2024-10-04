@@ -22,4 +22,9 @@ interface UserRepository
      * Creates and persists a User record.
      */
     public function create(string $name, string $email): User;
+
+    /**
+     * Updates a User record.
+     */
+    public function update(User $user): void;
 }
