@@ -27,4 +27,9 @@ interface UserRepository
      * Updates a User record.
      */
     public function update(User $user): void;
+
+    /**
+     * Deletes a User record.
+     */
+    public function delete(User $user): void;
 }

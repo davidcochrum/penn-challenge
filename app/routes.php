@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Actions\User\CreateUserAction;
+use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\EarnPointsAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\RedeemPointsAction;
@@ -29,5 +30,6 @@ return function (App $app) {
         $group->post('', CreateUserAction::class);
         $group->post('/{id}/earn', EarnPointsAction::class);
         $group->post('/{id}/redeem', RedeemPointsAction::class);
+        $group->delete('/{id}', DeleteUserAction::class);
     });
 };

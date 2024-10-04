@@ -65,4 +65,9 @@ class InMemoryUserRepository implements UserRepository
     {
         $this->users[$user->getId()] = $user;
     }
+
+    public function delete(User $user): void
+    {
+        unset($this->users[$user->getId()]);
+    }
 }

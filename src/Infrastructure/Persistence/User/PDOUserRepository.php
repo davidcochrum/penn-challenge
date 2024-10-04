@@ -79,6 +79,17 @@ class PDOUserRepository implements UserRepository
         $stmt->execute();
     }
 
+    public function delete(User $user): void
+    {
+        $stmt = $this->connection->prepare('
+            DELETE FROM users
+             WHERE id = :id
+        ');
+        $id = $user->getId();
+        $stmt->bindParam('id', $id);
+        $stmt->execute();
+    }
+
     private function modelFromRow(array $row): User
     {
         return new User($row['id'], $row['name'], $row['email'], $row['points_balance']);

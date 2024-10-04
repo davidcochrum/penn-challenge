@@ -71,4 +71,14 @@ class InMemoryUserRepositoryTest extends TestCase
 
         $this->assertEquals([$updated], $userRepository->findAll());
     }
+
+    public function testDelete()
+    {
+        $users[1] = $user = new User(1, 'Bill Gates', 'bill@microsoft.com', 3);
+        $userRepository = new InMemoryUserRepository($users);
+
+        $userRepository->delete($user);
+
+        $this->assertEquals([], $userRepository->findAll());
+    }
 }
