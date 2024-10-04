@@ -46,6 +46,15 @@ class UserTest extends TestCase
         $this->assertEquals(27, $user->getPointsBalance());
     }
 
+    public function testSubtractPoints()
+    {
+        $user = new User(2, 'Steve Jobs', 'steve@apple.com', 10);
+
+        $user->subtractPoints(7);
+
+        $this->assertEquals(3, $user->getPointsBalance());
+    }
+
     /**
      * @dataProvider userProvider
      * @param int    $id

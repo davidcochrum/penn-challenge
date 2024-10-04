@@ -41,6 +41,11 @@ class User implements JsonSerializable
         $this->pointsBalance += $points;
     }
 
+    public function subtractPoints(int $points): void
+    {
+        $this->pointsBalance -= $points;
+    }
+
     public function jsonSerialize(): array
     {
         return [
